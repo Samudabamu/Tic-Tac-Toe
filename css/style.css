@@ -12,11 +12,14 @@ table {
   margin: 0px auto;
 }
 
- th, tr {
+tr, th{
   height: 150px;
   width: 150px;
-}
+  border-style: solid;
+  border: black solid 1px;
 
+}
+/*
 #c1 {
   border-width: 0px 1px 1px 0px;
   border-style: solid;
@@ -52,10 +55,10 @@ table {
 #c9 {
   border-width: 1px 0px 0px 1px;
   border-style: solid;
-}
+} */
 
 .symbols {
-  height: 75qpx;
+  height: 75px;
   width: 75px;
 
 }
