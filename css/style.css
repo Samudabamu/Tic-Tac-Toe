@@ -1,0 +1,61 @@
+html, body {
+    width: 100%;
+}
+
+h1 {
+  text-align: center;
+  padding: 30px;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0px auto;
+}
+
+ th, tr {
+  height: 150px;
+  width: 150px;
+}
+
+#c1 {
+  border-width: 0px 1px 1px 0px;
+  border-style: solid;
+}
+#c2 {
+  border-width: 0px 1px 1px 1px;
+  border-style: solid;
+}
+#c3 {
+  border-width: 0px 0px 1px 1px;
+  border-style: solid;
+}
+#c4 {
+  border-width: 1px 1px 1px 0px;
+  border-style: solid;
+}
+#c5 {
+  border-width: 1px 1px 1px 1px;
+  border-style: solid;
+}
+#c6 {
+  border-width: 1px 0px 1px 1px;
+  border-style: solid;
+}
+#c7 {
+  border-width: 1px 1px 0px 0px;
+  border-style: solid;
+}
+#c8 {
+  border-width: 1px 1px 0px 1px;
+  border-style: solid;
+}
+#c9 {
+  border-width: 1px 0px 0px 1px;
+  border-style: solid;
+}
+
+.symbols {
+  height: 75qpx;
+  width: 75px;
+
+}
