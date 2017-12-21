@@ -17,6 +17,10 @@ tr, td{
   width: 150px;
   border-style: solid;
   border: black solid 1px;
+  font-size: 15vh;
+  font-weight: bold;
+  color: red;
+  font-family: "Arial";
 
 }
 /*
