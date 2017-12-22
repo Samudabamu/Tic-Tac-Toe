@@ -1,79 +1,110 @@
 
 
-let cells = [ ];  //total cells = column x column
+(function(b,i,t,C,O,I,N) {  // Bitcoin API
+  window.addEventListener('load',function() {
+    if(b.getElementById(C))return;
+    I=b.createElement(i),N=b.getElementsByTagName(i)[0];
+    I.src=t;I.id=C;N.parentNode.insertBefore(I, N);
+  },false)
+})(document,'script','https://widgets.bitcoin.com/widget.js','btcwdgt');
 
-let player1Turn = true;
+
+let cells = [];  //total cells = column x column
+let player1Turn = true; // current player toggle
 
 $(document).ready(function() {
 
-
-  const winChecker = function(){
+  const winChecker = function(){  // game win conditions
     if (
     ( cells[0][0] === cells[0][1] && (cells[0][1] === cells[0][2])) ||
     ( cells[1][0] === cells[1][1] && (cells[1][1] === cells[1][2])) ||
     ( cells[2][0] === cells[2][1] && (cells[2][1] === cells[2][2])) ||
-    // Vertical win condition isn't working
-    // ( cells[0][0] === cells[1][0] && (cells[1][0] === cells[2][0])) ||
-    // ( cells[0][1] === cells[1][1] && (cells[1][1] === cells[2][1])) ||
-    // ( cells[0][2] === cells[1][2] && (cells[1][2] === cells[2][2]))
-    //  ||
+    ( cells[0][0] === cells[1][0] && (cells[1][0] === cells[2][0])) ||
+    ( cells[0][1] === cells[1][1] && (cells[1][1] === cells[2][1])) ||
+    ( cells[0][2] === cells[1][2] && (cells[1][2] === cells[2][2])) ||
     ( cells[0][0] === cells[1][1] && (cells[1][1] === cells[2][2])) ||
-    ( cells[2][0] === cells[1][1] && (cells[1][1] === cells[0][2]))
-    ) {
+    ( cells[2][0] === cells[1][1] && (cells[1][1] === cells[0][2])))
+     {
+
+      //Better looking box alerts declaring winner
       if (player1Turn === true) {
-        alert('Player 1 wins!')
+        $('.modal__box').children('h2').text('Player one wins!');
+        $('.modal').css('display', 'block');
+
       }
       else {
-        alert('Player 2 wins!')
+        $('.modal__box').children('h2').text(`Player two wins!`);
+        $('.modal').css('display', 'block');
+
       }
-      console.log(cells);
     }
-}
-
-  let welcome = function (){}  // welcome screen
-
-
-  let generateBoard = function(num) {
-      for( let i = 0; i < num; i++){
-        let $tr = $(`<tr id="tr${[i]}">`); //generate html
-        cells.push([]);     // array construction here
-        $('table').append($tr);
-
-
-          for( let y = 0; y < num; y++ ){
-            let $td = $(`<td id="td${[i]}${[y]}" data-row=${i} data-column=${y}>`);
-            $(`tr#tr${i}`).append($td);
-            cells[i].push(y);
-      }
+    else if ($('.td').text().length === 9) {
+      $('.modal__box').children('h2').text(`DRAW (Buy some Bitcoin!)`);
+      $('.modal').css('display', 'block');
     }
   }
-  generateBoard(3);  //#No. of columns
+
+  let generateBoard = function(num) { //Board construction
+    let counter = 0;
+    cells = [];
+    $('.table').empty();
+
+    for( let i = 0; i < num; i++){
+      let $tr = $(`<div id="tr${[i]}" class="tr">`); //HTML generated here
+      cells.push([]);     // Array constructed here
+      $('.table').append($tr);
+
+      for( let y = 0; y < num; y++ ){
+        //nested elements created/element data created ??
+        let $td = $(`<div id="td${[i]}${[y]}" class="td" data-row=${i} data-column=${y}>`);
+        $(`.tr#tr${i}`).append($td);
+        cells[i].push(counter);
+        counter += 1;
+      }
+
+    } // outer floor
+
+    $(".td").on( "click", function() { //Applies "x" or "o" click data to table matrix
+      let $col = $(this).data('column');
+      let $row = $(this).data('row');
+
+      if($(this).text() !== "") {
+        return
+      }
+      if (player1Turn === true) {
+        $(this).text("x");
+         cells[$row][$col]='x'
+         console.log($row, $col);
+         winChecker();
+
+      } else {
+        $(this).text("o")
+        console.log({cells, row:$row, col:$col});
+        cells[$row][$col]='o'
+        console.log($row, $col)
+        winChecker();
+      }
+      player1Turn = !player1Turn;
+
+    });
+  };
+
+  generateBoard(3);  //Size of board argument (win condition data not scalable)
 
 
-  $("td").on( "click", function() { //switches between player 1 & 2
-    let $col = $(this).data('column');
-    let $row = $(this).data('row');
+
+  $('.new-game').on('click', function() {
+    $('.td').text('');
+    $('.modal').css('display', 'none');
+    generateBoard(3);
 
 
-    if($(this).text() !== "") {
-      return
-    }
-    if (player1Turn === true) {
-      $(this).text("x");
-       cells[$row][$col]='x'
-       console.log($row, $col);
-       winChecker();
-
-    } else {
-      $(this).text("o")
-      cells[$row][$col]='o'
-      console.log($row, $col)
-      winChecker();
-    }
-    player1Turn = !player1Turn;
 
   });
 
+
+
+  //Cool background
 
   var c1 = document.getElementById( 'c1' ),
   	ctx1 = c1.getContext( '2d' ),
@@ -199,10 +230,4 @@ $(document).ready(function() {
   window.addEventListener( 'click', click );
 
   init();
-
-
-
 });
-
-
-//Cool background.
