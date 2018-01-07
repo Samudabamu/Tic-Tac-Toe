@@ -1,5 +1,4 @@
 
-
 (function(b,i,t,C,O,I,N) {  // Bitcoin API
   window.addEventListener('load',function() {
     if(b.getElementById(C))return;
@@ -25,20 +24,17 @@ $(document).ready(function() {
     ( cells[0][0] === cells[1][1] && (cells[1][1] === cells[2][2])) ||
     ( cells[2][0] === cells[1][1] && (cells[1][1] === cells[0][2])))
      {
-
       //Better looking box alerts declaring winner
       if (player1Turn === true) {
         $('.modal__box').children('h2').text('Player one wins!');
         $('.modal').css('display', 'block');
-
       }
       else {
         $('.modal__box').children('h2').text(`Player two wins!`);
         $('.modal').css('display', 'block');
-
       }
     }
-    else if ($('.td').text().length === 9) {
+    else if ($('.td').text().length === 9) {l
       $('.modal__box').children('h2').text(`DRAW (Buy some Bitcoin!)`);
       $('.modal').css('display', 'block');
     }
@@ -61,9 +57,8 @@ $(document).ready(function() {
         cells[i].push(counter);
         counter += 1;
       }
-
-    } // outer floor
-
+    }
+     // outer floor
     $(".td").on( "click", function() { //Applies "x" or "o" click data to table matrix
       let $col = $(this).data('column');
       let $row = $(this).data('row');
@@ -74,14 +69,11 @@ $(document).ready(function() {
       if (player1Turn === true) {
         $(this).text("x");
          cells[$row][$col]='x'
-         console.log($row, $col);
          winChecker();
 
       } else {
         $(this).text("o")
-        console.log({cells, row:$row, col:$col});
         cells[$row][$col]='o'
-        console.log($row, $col)
         winChecker();
       }
       player1Turn = !player1Turn;
@@ -89,23 +81,16 @@ $(document).ready(function() {
     });
   };
 
-  generateBoard(3);  //Size of board argument (win condition data not scalable)
-
-
+  generateBoard(4);  //Size of board argument (win condition data not scalable)
 
   $('.new-game').on('click', function() {
     $('.td').text('');
     $('.modal').css('display', 'none');
-    generateBoard(3);
-
-
+    generateBoard(4);
 
   });
 
-
-
   //Cool background
-
   var c1 = document.getElementById( 'c1' ),
   	ctx1 = c1.getContext( '2d' ),
   	c2 = document.getElementById( 'c2' ),
