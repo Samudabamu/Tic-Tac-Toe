@@ -81,7 +81,7 @@ $(document).ready(function() {
     });
   };
 
-  generateBoard(4);  //Size of board argument (win condition data not scalable)
+  generateBoard(3);  //Size of board argument (win condition data not scalable)
 
   $('.new-game').on('click', function() {
     $('.td').text('');
