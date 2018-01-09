@@ -86,7 +86,7 @@ $(document).ready(function() {
   $('.new-game').on('click', function() {
     $('.td').text('');
     $('.modal').css('display', 'none');
-    generateBoard(4);
+    generateBoard(3);
 
   });
 
